@@ -1,20 +1,13 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import ReturnsInfo from '@/src/Sections/ReturnsInfo/ReturnsInfo'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import ReturnComponent from '@/src/Sections/ReturnComponent/ReturnComponent';
 
-const Returns = () => {
+const Return = () => {
   return (
-    <>
-      <Navbar/>
-      < ReturnsInfo />       
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <ReturnComponent />
+    </Layout>
+  );
+};
 
-export default Returns
-
-/*
-http://localhost:3000/Returns
-*/
+export default Return; 

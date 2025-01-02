@@ -1,21 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import DeliveryInfo from '@/src/Sections/DeliveryInfo/DeliveryInfo'
-import LeaveRequestForm from '../src/Sections/LeaveRequestForm/LeaveRequestForm'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import DeliveryComponent from '@/src/Sections/DeliveryComponent/DeliveryComponent';
 
 const Delivery = () => {
   return (
-    <>
-      <Navbar/>
-      <DeliveryInfo />
-      <LeaveRequestForm />                   
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <DeliveryComponent />
+    </Layout>
+  );
+};
 
-export default Delivery
+export default Delivery;
 
 /*
 http://localhost:3000/Delivery

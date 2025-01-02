@@ -1,19 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import ForCustomersComponent from '@/src/Sections/ForCustomersComponent/ForCustomersComponent'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import ForCustomersComponent from '@/src/Sections/ForCustomersComponent/ForCustomersComponent';
 
 const ForCustomers = () => {
   return (
-    <>
-      <Navbar/>
-      <ForCustomersComponent />                    
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <ForCustomersComponent />
+    </Layout>
+  );
+};
 
-export default ForCustomers
+export default ForCustomers;
 
 /*
 http://localhost:3000/ForCustomers

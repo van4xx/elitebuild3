@@ -1,19 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import FavoriteProducts from '../src/Sections/FavoriteProducts/FavoriteProducts'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import FavoritesComponent from '@/src/Sections/FavoritesComponent/FavoritesComponent';
 
 const Favorites = () => {
   return (
-    <>
-      <Navbar/>
-      <FavoriteProducts  />    
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <FavoritesComponent />
+    </Layout>
+  );
+};
 
-export default Favorites
+export default Favorites;
 
 /*
 http://localhost:3000/Favorites

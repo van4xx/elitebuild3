@@ -1,26 +1,30 @@
 import React from 'react';
-import Navbar from '@/src/Sections/Navbar/Navbar';
-import ProductInfo from '@/src/Sections/ProductInfo/ProductInfo';
-import RelatedProducts from '@/src/Sections/RelatedProducts/RelatedProducts';
-import PopularProducts from '@/src/Sections/PopularProducts/PopularProducts';
-import ProductAccessories from '@/src/Sections/ProductAccessories/ProductAccessories';
-import Footer from '@/src/Sections/Footer/Footer';
+import Layout from '@/src/Components/Layout/Layout';
+import ProductPageComponent from '@/src/Sections/ProductPageComponent/ProductPageComponent';
+import { testProducts } from '@/src/data/testProducts';
 import { useRouter } from 'next/router';
 
 const ProductPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const productId = id ? String(id) : undefined;
+
+  // Находим продукт по ID
+  const product = testProducts.find(p => p.id === Number(id));
+
+  if (!product) {
+    return (
+      <Layout>
+        <div style={{ padding: '40px 20px', textAlign: 'center' }}>
+          <h1>Товар не найден</h1>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
-    <>
-      <Navbar />
-      <ProductInfo productId={productId} />
-      <RelatedProducts />
-      <PopularProducts />
-      <ProductAccessories />
-      <Footer />
-    </>
+    <Layout>
+      <ProductPageComponent product={product} />
+    </Layout>
   );
 };
 

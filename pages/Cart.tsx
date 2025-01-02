@@ -1,61 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Layout from '@/src/Components/Layout/Layout';
-import { getCartItems, removeFromCart, updateCartItemQuantity } from '@/services/cartHelpers';
-import styles from '@/styles/Cart.module.css';
-import { IoClose } from "react-icons/io5";
-import { FiMinus, FiPlus } from "react-icons/fi";
-import Link from 'next/link';
+import { useAppContext } from '@/src/context/AppContext';
+import { FaTrash, FaMinus, FaPlus } from 'react-icons/fa';
 import Image from 'next/image';
-import PaymentModal from '@/src/Components/PaymentModal/PaymentModal';
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from '@/styles/Cart.module.css';
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const { cart, removeFromCart } = useAppContext();
 
-  useEffect(() => {
-    const items = getCartItems();
-    setCartItems(items);
-    calculateTotal(items);
-  }, []);
-
-  const calculateTotal = (items) => {
-    const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    setTotalPrice(total);
+  const calculateTotal = () => {
+    return cart.reduce((total, item) => total + item.price, 0);
   };
-
-  const handleQuantityChange = (itemId: string, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    
-    const updatedItems = updateCartItemQuantity(itemId, newQuantity);
-    setCartItems(updatedItems);
-    calculateTotal(updatedItems);
-  };
-
-  const handleRemoveItem = (itemId: string) => {
-    const updatedItems = removeFromCart(itemId);
-    setCartItems(updatedItems);
-    calculateTotal(updatedItems);
-  };
-
-  const handlePaymentSubmit = (formData: PaymentFormData) => {
-    console.log('Order data:', formData);
-    setIsPaymentModalOpen(false);
-  };
-
-  if (cartItems.length === 0) {
-    return (
-      <Layout>
-        <div className={styles.cart__empty}>
-          <h2>Корзина пуста</h2>
-          <p>Добавьте товары для оформления заказа</p>
-          <Link href="/catalog" className={styles.cart__continue_shopping}>
-            Перейти к покупкам
-          </Link>
-        </div>
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
@@ -63,88 +20,93 @@ const Cart = () => {
         <div className={styles.cart__container}>
           <h1 className={styles.cart__title}>Корзина</h1>
           
-          <div className={styles.cart__content}>
-            <div className={styles.cart__items}>
-              {cartItems.map((item) => (
-                <div key={item.id} className={styles.cart__item}>
-                  <div className={styles.cart__item_image}>
-                    <Image 
-                      src={item.image || '/images/placeholder.jpg'} 
-                      alt={item.name}
-                      width={100}
-                      height={100}
-                      objectFit="cover"
-                    />
-                  </div>
-                  
-                  <div className={styles.cart__item_info}>
-                    <h3 className={styles.cart__item_name}>{item.name}</h3>
-                    <p className={styles.cart__item_price}>{item.price} ₽</p>
-                  </div>
-
-                  <div className={styles.cart__item_quantity}>
-                    <button 
-                      onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                      className={styles.cart__quantity_btn}
+          {cart.length > 0 ? (
+            <div className={styles.cart__content}>
+              <div className={styles.cart__items}>
+                <AnimatePresence>
+                  {cart.map((item) => (
+                    <motion.div 
+                      key={item.id}
+                      className={styles.cart_item}
+                      layout
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
                     >
-                      <FiMinus />
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button 
-                      onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                      className={styles.cart__quantity_btn}
-                    >
-                      <FiPlus />
-                    </button>
-                  </div>
+                      <div className={styles.item_image}>
+                        <Image 
+                          src={item.image} 
+                          alt={item.name} 
+                          width={100} 
+                          height={100}
+                        />
+                      </div>
+                      <div className={styles.item_info}>
+                        <h3 className={styles.item_name}>{item.name}</h3>
+                        <div className={styles.item_price}>
+                          <span className={styles.current_price}>{item.price} ₽</span>
+                          {item.oldPrice && (
+                            <span className={styles.old_price}>{item.oldPrice} ₽</span>
+                          )}
+                        </div>
+                      </div>
+                      <div className={styles.item_actions}>
+                        <button 
+                          className={styles.remove_button}
+                          onClick={() => removeFromCart(item.id)}
+                        >
+                          <FaTrash />
+                          <span>Удалить</span>
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
 
-                  <div className={styles.cart__item_total}>
-                    {item.price * item.quantity} ₽
+              <div className={styles.cart__summary}>
+                <div className={styles.summary_card}>
+                  <h2 className={styles.summary_title}>Итого</h2>
+                  <div className={styles.summary_row}>
+                    <span>Товары ({cart.length})</span>
+                    <span>{calculateTotal()} ₽</span>
                   </div>
-
-                  <button 
-                    onClick={() => handleRemoveItem(item.id)}
-                    className={styles.cart__item_remove}
-                  >
-                    <IoClose />
+                  <div className={styles.summary_row}>
+                    <span>Доставка</span>
+                    <span className={styles.free}>Бесплатно</span>
+                  </div>
+                  <div className={styles.total_row}>
+                    <span>К оплате</span>
+                    <span>{calculateTotal()} ₽</span>
+                  </div>
+                  <button className={styles.checkout_button}>
+                    Оформить заказ
                   </button>
+                  <Link href="/catalog" className={styles.continue_shopping}>
+                    Продолжить покупки
+                  </Link>
                 </div>
-              ))}
+              </div>
             </div>
-
-            <div className={styles.cart__summary}>
-              <h2 className={styles.cart__summary_title}>Итого</h2>
-              <div className={styles.cart__summary_row}>
-                <span>Товары ({cartItems.length})</span>
-                <span>{totalPrice} ₽</span>
+          ) : (
+            <div className={styles.empty_cart}>
+              <div className={styles.empty_cart_content}>
+                <Image 
+                  src="/images/empty-cart.svg" 
+                  alt="Пустая корзина" 
+                  width={200} 
+                  height={200}
+                />
+                <h2>Корзина пуста</h2>
+                <p>Добавьте товары для оформления заказа</p>
+                <Link href="/catalog" className={styles.catalog_link}>
+                  Перейти в каталог
+                </Link>
               </div>
-              <div className={styles.cart__summary_row}>
-                <span>Доставка</span>
-                <span>Бесплатно</span>
-              </div>
-              <div className={styles.cart__summary_total}>
-                <span>К оплате</span>
-                <span>{totalPrice} ₽</span>
-              </div>
-              <button 
-                className={styles.cart__checkout}
-                onClick={() => setIsPaymentModalOpen(true)}
-              >
-                Оформить заказ
-              </button>
-              <Link href="/catalog" className={styles.cart__continue_shopping}>
-                Продолжить покупки
-              </Link>
             </div>
-          </div>
+          )}
         </div>
       </div>
-      <PaymentModal
-        isOpen={isPaymentModalOpen}
-        onClose={() => setIsPaymentModalOpen(false)}
-        totalAmount={totalPrice}
-        onSubmit={handlePaymentSubmit}
-      />
     </Layout>
   );
 };

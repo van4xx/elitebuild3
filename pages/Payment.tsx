@@ -1,21 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import PaymentInfo from '@/src/Sections/PaymentInfo/PaymentInfo'
-import PaymentOptions from '@/src/Sections/PaymentOptions/PaymentOptions'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import PaymentComponent from '@/src/Sections/PaymentComponent/PaymentComponent';
 
 const Payment = () => {
   return (
-    <>
-      <Navbar/>
-      <PaymentInfo />   
-      <PaymentOptions />           
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <PaymentComponent />
+    </Layout>
+  );
+};
 
-export default Payment
+export default Payment;
 
 /*
 http://localhost:3000/Payment

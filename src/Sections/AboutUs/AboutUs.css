@@ -1,137 +1,333 @@
-.about-us {
+.about {
     max-width: 1440px;
-    height: auto;
     margin: 0 auto;
-    box-sizing: border-box;
+  padding: 60px 20px;
+  background-color: var(--background-light);
+}
+
+.about__container {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+/* Hero section */
+.about__hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about__hero-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0 50px;
+  gap: 24px;
+}
+
+.about__title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-dark-blue);
+  line-height: 1.2;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.about__subtitle {
+  font-size: 20px;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease 0.2s forwards;
+}
+
+.about__hero-image {
+  position: relative;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(20px);
+  animation: fadeInRight 0.6s ease 0.4s forwards;
+}
+
+.about__hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Stats section */
+.about__stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding: 60px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.about__stat {
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.about__stat:nth-child(1) { animation: fadeInUp 0.6s ease 0.2s forwards; }
+.about__stat:nth-child(2) { animation: fadeInUp 0.6s ease 0.4s forwards; }
+.about__stat:nth-child(3) { animation: fadeInUp 0.6s ease 0.6s forwards; }
+.about__stat:nth-child(4) { animation: fadeInUp 0.6s ease 0.8s forwards; }
+
+.about__stat-number {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--background-dark-blue);
+  margin-bottom: 8px;
+}
+
+.about__stat-text {
+  font-size: 16px;
+  color: var(--text-gray);
+}
+
+/* Values section */
+.about__values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.about__value {
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.about__value:nth-child(1) { animation: fadeInUp 0.6s ease 0.4s forwards; }
+.about__value:nth-child(2) { animation: fadeInUp 0.6s ease 0.6s forwards; }
+.about__value:nth-child(3) { animation: fadeInUp 0.6s ease 0.8s forwards; }
+
+.about__value:hover {
+  transform: translateY(-10px);
+}
+
+.about__value-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 24px;
+  color: var(--background-dark-blue);
+}
+
+.about__value-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-dark-blue);
+  margin-bottom: 16px;
+}
+
+.about__value-text {
+  font-size: 16px;
+  color: var(--text-gray);
+  line-height: 1.6;
+}
+
+/* Team section */
+.about__team {
+  text-align: center;
+}
+
+.about__team-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text-dark-blue);
+  margin-bottom: 48px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.about__team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.about__team-member {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.about__team-member:nth-child(1) { animation: fadeInUp 0.6s ease 0.2s forwards; }
+.about__team-member:nth-child(2) { animation: fadeInUp 0.6s ease 0.4s forwards; }
+.about__team-member:nth-child(3) { animation: fadeInUp 0.6s ease 0.6s forwards; }
+.about__team-member:nth-child(4) { animation: fadeInUp 0.6s ease 0.8s forwards; }
+
+.about__team-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.about__team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__team-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-dark-blue);
+  margin-bottom: 8px;
+}
+
+.about__team-position {
+  font-size: 16px;
+  color: var(--text-gray);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .about-us__breadcrumb {
-    width: 135px;
-    font-family: 'Inter', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 16.94px;
-    text-align: left;
-    color: var(--text-dark-blue);
-    white-space: nowrap;
-    margin-top: 50px;
-    margin-bottom: 25px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .about-us__breadcrumb a {
-    text-decoration: none;
-    color: var(--text-dark-blue);
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
   }
-  
-  .about-us__title {
-    font-family: 'Inter', sans-serif;
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 48.41px;
-    text-align: left;
-    color: var(--background-dark-blue);
-    margin-bottom: 25px;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  .about-us__columns {
-    display: flex;
-    flex-direction: column;
+}
+
+/* Media queries */
+@media (max-width: 1200px) {
+  .about__stats {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px;
   }
-  
-  .about-us__intro p {
-    font-family: 'Inter';
+
+  .about__team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 968px) {
+  .about {
+    padding: 40px 20px;
+  }
+
+  .about__container {
+    gap: 60px;
+  }
+
+  .about__hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about__hero-image {
+    height: 400px;
+    order: -1;
+  }
+
+  .about__values {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__title {
+    font-size: 36px;
+  }
+
+  .about__subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about__values {
+    grid-template-columns: 1fr;
+  }
+
+  .about__team-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about__team-image {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 30px 15px;
+  }
+
+  .about__container {
+    gap: 40px;
+  }
+
+  .about__hero-image {
+    height: 300px;
+  }
+
+  .about__title {
+    font-size: 28px;
+  }
+
+  .about__subtitle {
     font-size: 16px;
-    font-weight: 400;
-    line-height: 19.36px;
-    text-align: left;
-    color: var(--text-dark-blue);
-    margin-bottom: 25px;
   }
-  
-  .about-us__list {
-    list-style: decimal;
-    padding-left: 20px;
+
+  .about__stat-number {
+    font-size: 36px;
   }
-  
-  .about-us__item {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    font-family: 'Inter';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.36px;
-    text-align: left;
-    color: var(--text-dark-blue);
+
+  .about__value {
+    padding: 30px;
   }
-  
-  .about-us__note p {
-    font-family: 'Inter';
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.36px;
-    text-align: left;
-    color: var(--text-dark-blue);
-    margin-bottom: 25px;
+
+  .about__value-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 20px;
   }
-  
-  @media (max-width: 1440px) {
-    .about-us {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  
-    .about-us__breadcrumb {
-      font-size: 0.97vw; /* 14px */
-      line-height: 1.18vw; /* 16.94px */
-      margin-top: 3.47vw; /* 50px */
-      margin-bottom: 1.74vw; /* 25px */
-    }
-  
-    .about-us__title {
-      font-size: 2.78vw; /* 40px */
-      line-height: 3.36vw; /* 48.41px */
-      margin-bottom: 1.74vw; /* 25px */
-    }
-  
-    .about-us__item,
-    .about-us__intro p,
-    .about-us__note p {
-      font-size: 1.11vw; /* 16px */
-      line-height: 1.34vw; /* 19.36px */
-      margin-bottom: 1.74vw; /* 25px */
-    }
-  }
-  
-  @media (max-width: 425px) { 
-    .about-us {
-      padding-left: 10px;
-      padding-right: 10px;
-    }
-  
-    .about-us__breadcrumb {
-      font-size: 12px;
-      line-height: 14.52px;
-      margin-top: 25px;
-      margin-bottom: 15px;
-    }
-  
-    .about-us__title {
+
+  .about__value-title {
       font-size: 20px;
-      line-height: 24.2px;
-      margin-bottom: 15px;
-    }
-  
-    .about-us__item,
-    .about-us__intro p,
-    .about-us__note p {
-      font-size: 14px;
-      line-height: 16.94px;
-      margin-bottom: 15px;
+  }
+
+  .about__team-title {
+    font-size: 28px;
+    margin-bottom: 32px;
     }
   }
   

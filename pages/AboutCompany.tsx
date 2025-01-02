@@ -1,19 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import AboutUs from '@/src/Sections/AboutUs/AboutUs'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import AboutUs from '@/src/Sections/AboutUs/AboutUs';
 
 const AboutCompany = () => {
   return (
-    <>
-      <Navbar/>
-      <AboutUs />                    
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <AboutUs />
+    </Layout>
+  );
+};
 
-export default AboutCompany
+export default AboutCompany;
 
 /*
 http://localhost:3000/AboutCompany

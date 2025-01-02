@@ -1,49 +1,119 @@
 import React from 'react';
+import { FaUsers, FaWarehouse, FaTruck, FaMedal, FaHandshake, FaChartLine, FaCubes, FaTools } from 'react-icons/fa';
+import { MdSecurity } from 'react-icons/md';
+import { BiAbacus } from 'react-icons/bi';
 import Link from 'next/link';
+import styles from './AboutUs.module.css';
 
 const AboutUs = () => {
   return (
-    <section className="about-us">
-      <div className="about-us__breadcrumb">
-        <Link href="/">
-          Главная
-        </Link>
-        {" / "}
-        <Link href="/AboutCompany">
-          О компании
-        </Link>
-      </div>
-      <h1 className="about-us__title">О компании</h1>
-      <div className="about-us__columns">
-        <div className="about-us__intro">
-          <p>
-            Мы — команда профессионалов, увлечённых созданием качественных цифровых решений. Наша цель — помогать клиентам добиваться успеха в цифровом мире, предлагая инновационные услуги и передовые технологии.
-          </p>
+    <div className={styles.about}>
+      <div className={styles.about__container}>
+        {/* Breadcrumbs */}
+        <div className={styles.breadcrumbs}>
+          <Link href="/">Главная</Link>
+          <span className={styles.breadcrumbs_separator}>/</span>
+          <span>О компании</span>
         </div>
-        <ol className="about-us__list">
-          <li className="about-us__item">
-            <strong>Опыт.</strong> Мы работаем в сфере веб-разработки и цифровых решений более 10 лет, создавая проекты любой сложности.
-          </li>
-          <li className="about-us__item">
-            <strong>Индивидуальный подход.</strong> Мы учитываем все особенности и пожелания клиента, чтобы предлагать уникальные решения.
-          </li>
-          <li className="about-us__item">
-            <strong>Технологии.</strong> Мы используем только проверенные и современные технологии, обеспечивая надёжность и эффективность наших решений.
-          </li>
-          <li className="about-us__item">
-            <strong>Поддержка.</strong> Мы остаёмся на связи с клиентами даже после завершения проекта, предлагая техническую поддержку и обновления.
-          </li>
-        </ol>
-        <div className="about-us__note">
-          <p>
-            Наша компания гордится своими достижениями и благодарна клиентам за доверие. Мы ценим каждый проект и всегда стремимся к идеалу.
-          </p>
-          <p>
-            Свяжитесь с нами, чтобы обсудить ваши задачи, и мы поможем воплотить ваши идеи в жизнь!
-          </p>
+
+        {/* Hero Section */}
+        <div className={styles.about__hero}>
+          <div className={styles.about__hero_content}>
+            <h1 className={styles.about__title}>О компании ПрестижСтрой</h1>
+            <p className={styles.about__subtitle}>
+              Мы являемся ведущим поставщиком строительных материалов с 2008 года. 
+              Наша компания специализируется на комплексных поставках строительных материалов 
+              для частного и промышленного строительства.
+            </p>
+            <div className={styles.about__hero_stats}>
+              <div className={styles.hero_stat}>
+                <span className={styles.hero_stat_number}>15+</span>
+                <span className={styles.hero_stat_text}>лет опыта</span>
+              </div>
+              <div className={styles.hero_stat}>
+                <span className={styles.hero_stat_number}>50k+</span>
+                <span className={styles.hero_stat_text}>клиентов</span>
+              </div>
+              <div className={styles.hero_stat}>
+                <span className={styles.hero_stat_number}>10k+</span>
+                <span className={styles.hero_stat_text}>товаров</span>
+              </div>
+            </div>
+          </div>
+          <div className={styles.about__hero_pattern}>
+            <div className={styles.pattern_icon}>
+              <FaCubes />
+            </div>
+          </div>
+        </div>
+
+        {/* Values Section */}
+        <div className={styles.about__values}>
+          <h2 className={styles.section_title}>Наши преимущества</h2>
+          <div className={styles.values_grid}>
+            <div className={styles.value_card}>
+              <FaMedal className={styles.value_icon} />
+              <h3>Гарантия качества</h3>
+              <p>Все материалы сертифицированы и проходят строгий контроль качества</p>
+            </div>
+            <div className={styles.value_card}>
+              <FaWarehouse className={styles.value_icon} />
+              <h3>Собственные склады</h3>
+              <p>Большие складские помещения позволяют поддерживать постоянное наличие товаров</p>
+            </div>
+            <div className={styles.value_card}>
+              <FaTruck className={styles.value_icon} />
+              <h3>Быстрая доставка</h3>
+              <p>Доставляем заказы в течение 24 часов по городу и области</p>
+            </div>
+            <div className={styles.value_card}>
+              <FaHandshake className={styles.value_icon} />
+              <h3>Надёжное партнёрство</h3>
+              <p>Прямые поставки от производителей и выгодные условия сотрудничества</p>
+            </div>
+            <div className={styles.value_card}>
+              <MdSecurity className={styles.value_icon} />
+              <h3>Гарантия цены</h3>
+              <p>Предлагаем конкурентные цены и систему скидок для постоянных клиентов</p>
+            </div>
+            <div className={styles.value_card}>
+              <FaUsers className={styles.value_icon} />
+              <h3>Профессиональная команда</h3>
+              <p>Опытные специалисты помогут с выбором материалов для вашего проекта</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Info Section */}
+        <div className={styles.about__info}>
+          <div className={styles.info_content}>
+            <h2 className={styles.section_title}>Почему выбирают нас</h2>
+            <div className={styles.info_grid}>
+              <div className={styles.info_item}>
+                <FaTools className={styles.info_icon} />
+                <h3>Комплексные поставки</h3>
+                <p>Предлагаем полный спектр строительных материалов в одном месте</p>
+              </div>
+              <div className={styles.info_item}>
+                <BiAbacus className={styles.info_icon} />
+                <h3>Техническая поддержка</h3>
+                <p>Консультации по подбору и использованию материалов</p>
+              </div>
+              <div className={styles.info_item}>
+                <FaChartLine className={styles.info_icon} />
+                <h3>Удобная оплата</h3>
+                <p>Наличный и безналичный расчет, работа с НДС</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.info_pattern}>
+            <div className={styles.pattern_icon}>
+              <FaCubes />
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

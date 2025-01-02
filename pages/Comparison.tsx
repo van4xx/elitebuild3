@@ -1,19 +1,16 @@
-import React from 'react'
-import Navbar from '@/src/Sections/Navbar/Navbar'
-import ComparisonProducts from '../src/Sections/ComparisonProducts/ComparisonProducts'
-import Footer from '../src/Sections/Footer/Footer'
+import React from 'react';
+import Layout from '@/src/Components/Layout/Layout';
+import ComparisonComponent from '@/src/Sections/ComparisonComponent/ComparisonComponent';
 
 const Comparison = () => {
   return (
-    <>
-      <Navbar/>
-      <ComparisonProducts  />    
-      <Footer />    
-    </>
-  )
-}
+    <Layout>
+      <ComparisonComponent />
+    </Layout>
+  );
+};
 
-export default Comparison
+export default Comparison;
 
 /*
 http://localhost:3000/Comparison

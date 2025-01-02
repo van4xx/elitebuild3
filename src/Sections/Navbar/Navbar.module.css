@@ -512,6 +512,8 @@
     top: 0;
     left: 0;
     right: 0;
+    background: white;
+    z-index: 1000;
   }
 
   .navbar_top,
@@ -546,9 +548,13 @@
     display: block;
   }
 
-  .navbar__mobile_menu,
+  /* .navbar__mobile_menu,
   .navbar__overlay {
     display: block;
+  } */
+
+  .navbar_middle__catalog {
+    flex: 1;
   }
 }
 

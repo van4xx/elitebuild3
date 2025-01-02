@@ -1,59 +1,65 @@
 import React from 'react';
+import { categories } from '@/src/data/categories';
 import Link from 'next/link';
+import Breadcrumbs from '@/src/Components/Breadcrumbs/Breadcrumbs';
+import FeaturedProducts from '@/src/Components/FeaturedProducts/FeaturedProducts';
 import styles from './CatalogPage.module.css';
-import { categories } from '@/src/source';
 
 const CatalogPage = () => {
-  // Проверяем наличие категорий
-  if (!categories || categories.length === 0) {
-    return (
-      <div className={styles.catalog}>
-        <div className={styles.catalog__container}>
-          <h1 className={styles.catalog__title}>Каталог</h1>
-          <p>Категории загружаются...</p>
-        </div>
-      </div>
-    );
-  }
+  const breadcrumbItems = [
+    { label: 'Каталог' }
+  ];
 
   return (
     <div className={styles.catalog}>
-      <div className={styles.catalog__container}>
-        <h1 className={styles.catalog__title}>Каталог</h1>
+      <div className={styles.container}>
+        <Breadcrumbs items={breadcrumbItems} />
+        <h1 className={styles.title}>Каталог товаров</h1>
         
-        <div className={styles.catalog__grid}>
-          {categories.map((category, index) => (
-            <Link 
-              href={`/category/${category.id}`} 
-              key={index}
-              className={styles.catalog__item}
-            >
-              <div className={styles.catalog__item_image_container}>
-                <img 
-                  src={category.image} 
-                  alt={category.name}
-                  className={styles.catalog__item_image}
-                />
+        <FeaturedProducts />
+        
+        <div className={styles.categories}>
+          {categories.map(category => (
+            <div key={category.id} className={styles.category} id={`category-${category.id}`}>
+              <h2 className={styles.category_title}>{category.name}</h2>
+              
+              <div className={styles.subcategories}>
+                {category.subcategories.map(subcategory => (
+                  <div key={subcategory.id} className={styles.subcategory}>
+                    <Link 
+                      href={`/category/${subcategory.id}`}
+                      className={styles.subcategory_title}
+                    >
+                      {subcategory.name}
+                    </Link>
+                    
+                    {subcategory.items && (
+                      <div className={styles.items}>
+                        {subcategory.items.slice(0, 5).map((item, index) => (
+                          <Link
+                            key={index}
+                            href={`/category/${subcategory.id}/${index}`}
+                            className={styles.item}
+                          >
+                            {item}
+                          </Link>
+                        ))}
+                        {subcategory.items.length > 5 && (
+                          <span className={styles.more_items}>
+                            +{subcategory.items.length - 5} товаров
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
-              <div className={styles.catalog__item_content}>
-                <h2 className={styles.catalog__item_title}>{category.name}</h2>
-                <p className={styles.catalog__item_count}>
-                  {category.subcategories.length} {getSubcategoriesText(category.subcategories.length)}
-                </p>
-              </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>
     </div>
   );
-};
-
-// Функция для правильного склонения слова "подкатегория"
-const getSubcategoriesText = (count: number): string => {
-  const cases = [2, 0, 1, 1, 1, 2];
-  const titles = ['подкатегория', 'подкатегории', 'подкатегорий'];
-  return titles[(count % 100 > 4 && count % 100 < 20) ? 2 : cases[(count % 10 < 5) ? count % 10 : 5]];
 };
 
 export default CatalogPage; 

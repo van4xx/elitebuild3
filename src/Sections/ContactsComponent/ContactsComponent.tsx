@@ -1,68 +1,103 @@
 import React from 'react';
 import Link from 'next/link';
+import { FaPhone, FaEnvelope, FaClock, FaMapMarkerAlt } from 'react-icons/fa';
+import styles from './ContactsComponent.module.css';
 
 const ContactsComponent = () => {
   return (
-    <section className="contacts">
-      <div className="contacts__breadcrumb">
-        <Link href="/">
-          Главная
-        </Link>
-        {" / "}
-        <Link href="/Contacts">
-          Контакты
-        </Link>
-      </div>
-      <h1 className="contacts__title">Контактная информация</h1>
-      <div className="contacts__columns">
-        <div className="contacts__intro">
-          <p>
-            Ниже вы найдете всю необходимую информацию для связи с нашей компанией, включая адреса, телефоны и электронную почту.
-          </p>
+    <div className={styles.contacts}>
+      <div className={styles.contacts__container}>
+        {/* Breadcrumbs */}
+        <div className={styles.breadcrumbs}>
+          <Link href="/">Главная</Link>
+          <span className={styles.breadcrumbs_separator}>/</span>
+          <span>Контакты</span>
         </div>
-        <ul className="contacts__list">
-          <li className="contacts__item">
-            <strong>Адрес для почтовой корреспонденции:</strong>  
-            БОКС № 5678, Москва, 101000
-          </li>
-          <li className="contacts__item">
-            <strong>Адрес для приема корреспонденции, направляемой нарочным:</strong>  
-            Примерная улица, д. 2Б, стр. 1, Москва
-          </li>
-          <li className="contacts__item">
-            <strong>Адрес местонахождения:</strong>  
-            Проспект Победы, д. 5, корп. 4, Москва, 125252
-          </li>
-          <li className="contacts__item">
-            <strong>Телефон:</strong>  
-            +7 (999) 999-999 (справочный)   
-            +7 (999) 999-999 (факс)
-          </li>
-          <li className="contacts__item">
-            <strong>Электронная почта:</strong>  
-            info@prestijstroy.ru
-            support@prestijstroy.ru (для замечаний по работе сайта)
-          </li>
-          <li className="contacts__item">
-            <strong>Наименование компании:</strong>  
-            полное — Общество с ограниченной ответственностью «Престижстрой»  
-            сокращенное — ООО «Престижстрой»
-          </li>
-          <li className="contacts__item">
-            <strong>Регистрационная информация:</strong>
-            <p>Свидетельство о государственной регистрации № 987654321</p>
-            <p>Основной государственный регистрационный номер (ОГРН) — 1037700123456</p>
-            <p>Идентификационный номер налогоплательщика (ИНН) — 7701234567</p>
-            <p>Код причины постановки на учет (КПП) — 773401001</p>
-          </li>
-        </ul>
-        <div className="contacts__note">
-          <p>
-            Если у вас возникли дополнительные вопросы или предложения, пожалуйста, свяжитесь с нами. Мы всегда готовы помочь!
-          </p>
+
+        <h1 className={styles.contacts__title}>Контакты</h1>
+
+        {/* Info Grid */}
+        <div className={styles.contacts__grid}>
+          <div className={styles.contacts__card}>
+            <FaPhone className={styles.contacts__icon} />
+            <h3>Телефоны</h3>
+            <div className={styles.contacts__info}>
+              <a href="tel:+78001234567">8 (800) 123-45-67</a>
+              <a href="tel:+78001234568">8 (800) 123-45-68</a>
+              <p>Звонок бесплатный</p>
+            </div>
+          </div>
+
+          <div className={styles.contacts__card}>
+            <FaEnvelope className={styles.contacts__icon} />
+            <h3>Email</h3>
+            <div className={styles.contacts__info}>
+              <a href="mailto:info@prestigstroy.ru">info@prestigstroy.ru</a>
+              <a href="mailto:sales@prestigstroy.ru">sales@prestigstroy.ru</a>
+              <p>Ответим в течение часа</p>
+            </div>
+          </div>
+
+          <div className={styles.contacts__card}>
+            <FaClock className={styles.contacts__icon} />
+            <h3>Режим работы</h3>
+            <div className={styles.contacts__info}>
+              <p>Пн-Пт: 9:00 - 20:00</p>
+              <p>Сб: 10:00 - 18:00</p>
+              <p>Вс: выходной</p>
+            </div>
+          </div>
+
+          <div className={styles.contacts__card}>
+            <FaMapMarkerAlt className={styles.contacts__icon} />
+            <h3>Адрес</h3>
+            <div className={styles.contacts__info}>
+              <p>г. Москва, ул. Строителей, д. 1</p>
+              <p>Офис: 3 этаж, помещение 301</p>
+              <p>Склад: территория А, корпус 2</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Departments */}
+        <div className={styles.contacts__departments}>
+          <h2 className={styles.contacts__subtitle}>Отделы</h2>
+          <div className={styles.departments__grid}>
+            <div className={styles.department__card}>
+              <h3>Отдел продаж</h3>
+              <p>По вопросам заказов и доставки</p>
+              <a href="tel:+78001234567">8 (800) 123-45-67</a>
+            </div>
+            <div className={styles.department__card}>
+              <h3>Техническая поддержка</h3>
+              <p>Консультации по материалам</p>
+              <a href="tel:+78001234568">8 (800) 123-45-68</a>
+            </div>
+            <div className={styles.department__card}>
+              <h3>Бухгалтерия</h3>
+              <p>Документы и оплата</p>
+              <a href="tel:+78001234569">8 (800) 123-45-69</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Map */}
+        <div className={styles.contacts__map}>
+          <h2 className={styles.contacts__subtitle}>Как добраться</h2>
+          <div className={styles.map__container}>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=..." 
+              width="100%" 
+              height="450" 
+              style={{border:0}} 
+              allowFullScreen 
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

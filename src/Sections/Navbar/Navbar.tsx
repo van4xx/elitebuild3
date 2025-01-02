@@ -11,6 +11,7 @@ import LeaveRequestForm from "@/src/Components/LeaveRequestForm/LeaveRequestForm
 import { IoClose } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
 import styles from './Navbar.module.css';
+import CatalogButton from '@/src/Components/CatalogButton/CatalogButton';
 
 const Navbar = () => {
   const [isCatalogOpen, setIsCatalogOpen] = useState(false);
@@ -138,19 +139,7 @@ const Navbar = () => {
               </Link>
             </div>
             <div className={styles.navbar_middle__catalog} ref={catalogRef}>
-              <button
-                ref={buttonRef}
-                onClick={toggleCatalog}
-                className={styles.navbar_middle__catalog_button}
-              >
-                <MdMenu className={styles.navbar_middle__catalog_icon} />
-                <span className={styles.navbar_middle__catalog_text}>Каталог</span>
-              </button>
-              {isCatalogOpen && (
-                <div className={styles.navbar_middle__catalog_dropdown}>
-                  <CatalogComponent />
-                </div>
-              )}
+              <CatalogButton />
             </div>
 
             <div className={styles.navbar_middle__search}>
