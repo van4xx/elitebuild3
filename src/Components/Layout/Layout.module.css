@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  background-color: var(--background-light);
+  padding-top: 192px; /* высота навбара */
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding-top: 80px; /* меньшая высота навбара на мобильных */
+  }
+} 
